@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTP na Prática</title>
+
+    <style>
+        pre {
+            background-color: #eeeeee;
+            padding: 15px;
+            border: 1px solid black;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>HTTP na Prática: Requisição e Resposta</h1>
+    <hr>
+    <div id="http">
+        <h2>O que é HTTP?</h2>
+
+        <p>HTTP significa HyperText Transfer Protocol,
+            ou Protocolo de Transferência de Hipertexto. Ele é utilizado
+            para permitir a comunicação entre navegadores e servidores Web.</p>
+
+        <p>Quando acessamos um site, o navegador utiliza o HTTP para solicitar
+            informações ao servidor. O servidor recebe a solicitação, processa
+            o pedido e envia uma resposta.</p>
+
+        <p>Por exemplo, quando digitamos o endereço de um site no navegador,
+            ele solicita os arquivos necessários para exibir a página.</p>
+
+        <p>Quando essa comunicação utiliza criptografia por meio de TLS,
+            normalmente identificamos o protocolo como
+            <strong>HTTPS</strong>, que oferece mais segurança durante a
+            transmissão dos dados.</p>
+    </div>
+
+    <hr>
+
+    <div id="comunicacao">
+        <h2>Como funciona a comunicação HTTP?</h2>
+
+        <h3>Cliente</h3>
+
+        <p>
+            O cliente é o dispositivo ou programa que solicita informações.
+            Um exemplo de cliente é o navegador, como Google Chrome, Firefox
+            ou Microsoft Edge.
+        </p>
+
+        <h3>Servidor</h3>
+
+        <p>
+            O servidor é o sistema que recebe as requisições e envia respostas.
+            Ele pode armazenar páginas HTML, imagens, arquivos e outros dados.
+        </p>
+
+        <h3>Requisição</h3>
+
+        <p>
+            A requisição é a mensagem enviada pelo cliente ao servidor.
+            Ela informa qual recurso está sendo solicitado e qual método HTTP
+            está sendo utilizado.
+        </p>
+
+        <h3>Resposta</h3>
+
+        <p>
+            A resposta é a mensagem enviada pelo servidor ao cliente.
+            Ela contém um código de status e pode incluir informações,
+            como uma página HTML ou os dados solicitados.
+        </p>
+
+        <h3>Etapas da comunicação</h3>
+
+        <ol>
+            <li>O usuário acessa um endereço no navegador.</li>
+            <li>O navegador envia uma requisição HTTP ao servidor.</li>
+            <li>O servidor recebe e processa a requisição.</li>
+            <li>O servidor envia uma resposta HTTP.</li>
+            <li>O navegador interpreta a resposta e apresenta o conteúdo.</li>
+        </ol>
+    </div>
+    <hr>
+    <div id="metodos">
+        <h2>Métodos HTTP</h2>
+
+        <p>Os métodos HTTP indicam a ação que o cliente deseja realizar
+            sobre determinado recurso.</p>
+
+        <h3>GET</h3>
+
+        <p>O método <strong>GET</strong> é utilizado para solicitar
+            informações de um servidor. Por exemplo, ao abrir uma página
+            de notícias, o navegador pode utilizar GET para receber o
+            conteúdo.</p>
+
+        <h3>POST</h3>
+
+        <p>O método <strong>POST</strong> é utilizado para enviar dados
+            ao servidor, como informações de um formulário de cadastro.</p>
+
+        <p>Por exemplo, quando um usuário preenche um formulário de contato,
+            os dados podem ser enviados ao servidor utilizando POST.</p>
+
+        <p><em>Importante:</em> POST não é automaticamente seguro ou
+            criptografado. Para proteger os dados durante a transmissão,
+            deve-se utilizar HTTPS.</p>
+    </div>
+    <hr>
+    <div id="requisicao">
+        <h2>Exemplo de uma requisição HTTP</h2>
+
+        <p>Abaixo temos um exemplo simplificado de uma requisição HTTP
+            utilizando o método GET para solicitar a página inicial de
+            um site:</p>
+
+        <pre>GET /index.html HTTP/1.1
+Host: www.exemplo.com
+Accept: text/html</pre>
+
+        <p>GET: método utilizado para solicitar o recurso.</p>
+
+        <p>index.html: caminho do recurso solicitado.</p>
+
+        <p>HTTP/1.1: versão do protocolo utilizada
+            neste exemplo.</p>
+
+        <p>Host: informa o nome do servidor de destino.</p>
+
+        <p>Accept: informa o tipo de conteúdo que o
+            cliente aceita receber.</p>
+    </div>
+
+    <hr>
+
+    <div id="resposta">
+        <h2>Exemplo de uma resposta HTTP</h2>
+
+        <p>Depois de receber a requisição, o servidor pode responder
+            com uma mensagem como esta:</p>
+
+        <pre>HTTP/1.1 200 OK
+Content-Type: text/html
+
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Meu Site&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Olá, mundo!&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+        <p>200 OK:indica que a requisição foi processada
+            com sucesso.</p>
+
+        <p>Content-Type: informa o tipo de conteúdo
+            enviado pelo servidor.</p>
+
+        <p>O conteúdo HTML é o corpo da resposta. O navegador interpreta
+            esse conteúdo e exibe a página para o usuário.</p>
+    </div>
+
+    <hr>
+
+    <div id="status">
+        <h2>Códigos de status HTTP</h2>
+
+        <p>Os códigos de status informam o resultado do processamento
+            de uma requisição. Eles são divididos em categorias, como
+            sucesso, redirecionamento, erro do cliente e erro do servidor.</p>
+
+        <h3>200 — OK</h3>
+
+        <p>Significa que a requisição foi processada com sucesso.
+            Por exemplo, quando uma página é carregada normalmente.</p>
+
+        <h3>301 — Moved Permanently</h3>
+
+        <p>Indica que o recurso foi movido permanentemente para outro
+            endereço. O servidor informa o novo endereço por meio do
+            cabeçalho Location.</p>
+
+        <h3>302 — Found</h3>
+
+        <p>Indica um redirecionamento temporário. O recurso pode ser
+            acessado temporariamente por outro endereço.</p>
+
+        <h3>400 — Bad Request</h3>
+
+        <p>Significa que o servidor não conseguiu compreender a requisição
+            devido a um problema na mensagem enviada pelo cliente.</p>
+
+        <h3>403 — Forbidden</h3>
+
+        <p>Indica que o servidor entendeu a requisição, mas se recusa
+            a permitir o acesso ao recurso.</p>
+
+        <h3>404 — Not Found</h3>
+
+        <p>Significa que o servidor não encontrou o recurso solicitado.
+            Isso pode acontecer quando uma página não existe ou o endereço
+            está incorreto.</p>
+
+        <h3>500 — Internal Server Error</h3>
+
+        <p>Indica que ocorreu um erro interno inesperado no servidor,
+            impedindo que a requisição fosse concluída.</p>
+    </div>
+    <hr>
+
+    <div>
+        <h2>Conclusão</h2>
+
+        <p>
+            O HTTP é fundamental para o funcionamento da Web, pois permite
+            que navegadores e servidores troquem informações.
+        </p>
+
+        <p>
+            Os métodos, como GET e POST, definem as ações solicitadas,
+            enquanto os códigos de status informam o resultado da comunicação.
+        </p>
+
+        <p>
+            Compreender esses conceitos ajuda a entender como páginas,
+            formulários e aplicações Web funcionam.
+        </p>
+    </div>
+
+    <hr>
+    <div>
+        <h2>Fontes de pesquisa</h2>
+
+        <ul>
+            <li>
+                <a href="https://developer.mozilla.org/pt-BR/docs/Web/HTTP"
+                   target="_blank">
+                    MDN Web Docs — HTTP
+                </a>
+            </li>
+
+            <li>
+                <a href="https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Reference/Methods"
+                   target="_blank">
+                    MDN — Métodos HTTP
+                </a>
+            </li>
+
+            <li>
+                <a href="https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Reference/Status"
+                   target="_blank">
+                    MDN — Códigos de status HTTP
+                </a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
